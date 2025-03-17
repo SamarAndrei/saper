@@ -14,7 +14,7 @@ const Router = () => {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/">
+                <Route path="/saper/">
                     {routes.map((route, index) => (
                         <Route
                             key={index}

@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://samarandrei.github.io/sapern",
+  "homepage": "https://samarandrei.github.io/saper",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
