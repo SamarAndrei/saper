@@ -29,22 +29,17 @@ export default function Game() {
         return () => clearInterval(interval);
     }, [navigate]);
 
-    // Функция сохранения результата
     function saveResult(playerName, time) {
         const results = JSON.parse(localStorage.getItem("leaderboard")) || [];
 
-        // Добавляем нового игрока
         results.push({ name: playerName, time });
 
-        // Сортируем таблицу по времени (по возрастанию)
         results.sort((a, b) => a.time - b.time);
 
-        // Оставляем только 10 лучших
         if (results.length > 10) {
             results.pop();
         }
 
-        // Сохраняем результаты в LocalStorage
         localStorage.setItem("leaderboard", JSON.stringify(results));
     }
 
@@ -104,7 +99,6 @@ export default function Game() {
             return;
         }
 
-        // Проверка победы
         if (checkVictory(newGrid)) {
             setGameOver(true);
             const playerName = prompt("Вы выиграли! Введите ваше имя:");
@@ -113,7 +107,6 @@ export default function Game() {
             }
         }
 
-        // Если нет соседних мин, открываем соседние клетки
         if (newGrid[row][col].adjacentMines === 0) {
             openAdjacentCells(newGrid, row, col);
         }
@@ -144,11 +137,9 @@ export default function Game() {
             for (let dc = -1; dc <= 1; dc++) {
                 const nr = row + dr, nc = col + dc;
                 if (nr >= 0 && nr < grid.length && nc >= 0 && nc < grid[0].length) {
-                    // Только если клетка не открыта и не помечена флагом
                     if (!grid[nr][nc].isOpen && !grid[nr][nc].isFlagged) {
                         grid[nr][nc].isOpen = true;
 
-                        // Рекурсивно открываем соседние клетки, если у них нет соседних мин
                         if (grid[nr][nc].adjacentMines === 0) {
                             openAdjacentCells(grid, nr, nc);
                         }
